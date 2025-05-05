@@ -1,0 +1,7 @@
+{
+  "name": "searchable",
+  "integrations": {
+    "capacitor": {}
+  },
+  "type": "angular-standalone"
+}
