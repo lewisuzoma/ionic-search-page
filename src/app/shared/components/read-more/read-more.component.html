@@ -1,0 +1,28 @@
+<ion-toolbar mode="md" class="ion-no-padding ion-padding-horizontal">
+  <ion-icon (click)="closeModal()" class="cursor-pointer text-xl" slot="end"  name="close-outline"></ion-icon>
+</ion-toolbar>
+
+<ion-content [fullscreen]="true" class="ion-padding">
+  @if (title == 'Requirement') {
+    <ion-item lines="none" detail="false">
+      <ion-label>
+        <h2 class="font-semibold">{{title}}</h2>
+      </ion-label>
+    </ion-item>
+    @for (item of data; track $index) {
+      <ion-item detail="false" lines="none" class="ion-border-top ion-no-padding">
+        <ion-label>
+          <ion-icon color="medium" class="text-xl align-middle" name="checkmark-done-outline"></ion-icon>
+          <p class="font-normal text-sm inline"> {{item}}</p>
+        </ion-label>
+      </ion-item>
+    }
+  } @else {
+    <ion-item lines="none" detail="false">
+      <ion-label>
+        <h2 class="font-semibold">{{title}}</h2>
+        <p>{{data}}</p>
+      </ion-label>
+    </ion-item>
+  }
+</ion-content>

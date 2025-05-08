@@ -1,0 +1,18 @@
+@media(orientation: portrait) {
+    ion-content {
+      padding-top: constant(safe-area-inset-top); //ios 11.2
+      padding-top: env(safe-area-inset-top); //ios 11.1
+    }
+  }
+
+  
+@media (min-width: 768px) { 
+    .full-height {
+      height: 99vh;
+    }
+    .full-height-image {
+      height: 100%;
+      width: 100%;
+      object-fit: cover; /* Prevents image distortion */
+    }
+}

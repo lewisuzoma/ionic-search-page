@@ -1,0 +1,67 @@
+<ion-toolbar mode="md" class="ion-padding">
+  <ion-icon class="cursor-pointer text-xl" slot="start" name="arrow-back-outline"></ion-icon>
+  <ion-item (click)="openCourse()" class="ion-border ion-item-border-radius ion-margin-start" lines="none" detail="false">
+    <ion-label class="ion-padding">
+      <p>What do you want to study?</p>
+      <h2 class="font-semibold">{{courseData | titlecase}}</h2>
+    </ion-label>
+    <ion-icon class="cursor-pointer" slot="end" name="chevron-down-outline"></ion-icon>
+  </ion-item>
+</ion-toolbar>
+<ion-toolbar style="margin-top: -30px;" mode="md" class="ion-no-padding ion-padding-horizontal ion-padding-top ion-margin-bottom ion-border-bottom">
+  <ion-row>
+    <ion-col size="12">
+      <div class="flex items-center justify-center gap-5 mb-3">
+        <div class="align-middle"><ion-icon class="align-middle" src="assets/icon/sort.svg"></ion-icon> <span>&nbsp;Sort</span></div>
+        <div (click)="openFilter()" class="align-middle"><ion-icon class="align-middle" src="assets/icon/filter.svg"></ion-icon> <span>&nbsp;Filter</span>&nbsp;
+          @if ((filterObjects$ | async)?.length !== 0) {
+            <ion-badge mode="ios" class="align-middle" color="danger">{{(filterObjects$ | async)?.length}}</ion-badge>
+          }
+        </div>
+      </div>
+    </ion-col>
+  </ion-row>
+</ion-toolbar>
+
+
+<ion-content [fullscreen]="true" class="ion-padding">
+  <ion-searchbar [(ngModel)]="searchText" class="ion-margin-bottom ion-no-border" mode="ios" placeholder="Type to search"></ion-searchbar>
+
+  @if (loading) {
+    <app-chip-list-loader></app-chip-list-loader>
+  } @else {
+    <swiper-container slides-per-view="3.5" space-between="0" speed="500" grid-rows="1"
+    mousewheel-force-to-axis="true" >
+      @for (item of tags; track $index) {
+      <swiper-slide>
+        <ion-chip color="medium">
+          <ion-label>{{item}}</ion-label>
+          <ion-icon class="cursor-pointer" name="close" (click)="removeTags($index)"></ion-icon>
+        </ion-chip>
+      </swiper-slide>
+      }
+    </swiper-container>
+  }
+ 
+  @if (loading) {
+    <app-program-list-loader></app-program-list-loader>
+  } @else {
+    <ion-list-header class="ion-no-padding" mode="ios">
+      <h2 class="text-lg font-semibold">Search result</h2>
+    </ion-list-header>
+  
+    @if (programs.length === 0) {
+      <app-no-content [useIcon]="true">
+        <ion-label>
+          <h2>No record found</h2>
+          <p>Nothing to display</p>
+        </ion-label>
+      </app-no-content>
+    } @else {
+      @for (item of programs | search: searchText; track $index) {
+        <app-program-list [item]="item" [index]="$index"></app-program-list>
+      }
+    }
+  }
+
+</ion-content>

@@ -1,0 +1,51 @@
+<ion-card class="ion-margin-bottom no-shadow ion-border ion-item-border-radius-20px ion-no-margin wavy-image">
+  <img [alt]="`${item.programme_name}`" [src]="`${item.image_src}`" loading="lazy"/>
+  @if (item.character) {
+    <ion-button class="overlay-button no-shadow ion-item-border-radius-20px ion-text-capitalize" mode="md" color="light">
+      <ion-icon slot="start" class="align-middle" src="assets/icon/CircleWavyCheck.svg"></ion-icon>
+      <ion-text color="primary">{{item.character}}</ion-text>
+    </ion-button>
+  }
+  <ion-card-header [routerLink]="`/program-details/${item.id}`" routerDirection="forward">
+    <ion-card-title class="text-base">{{item.programme_name}}</ion-card-title>
+  </ion-card-header>
+
+  <ion-card-content>
+    <ion-label>
+      <ion-icon class="align-middle" src="assets/icon/CircleWavyCheck.svg"></ion-icon>
+      <ion-text> {{item.institute}}</ion-text>
+    </ion-label>
+    <div class="flex items-center gap-3">
+      <ion-label >
+        <ion-icon class="align-middle" src="assets/icon/Canada.svg"></ion-icon>
+        <ion-text> {{item.country}}</ion-text>
+      </ion-label>
+      <ion-label>
+        <ion-icon class="align-middle" name="school-outline"></ion-icon>
+        <ion-text> {{item.program_breakdown.level}}</ion-text>
+      </ion-label>
+      <ion-label>
+        <ion-icon class="align-middle" name="time-outline"></ion-icon>
+        <ion-text> {{item.program_breakdown.study_mode}}</ion-text>
+      </ion-label>
+      <ion-label>
+        <ion-icon class="align-middle" name="time-outline"></ion-icon>
+        <ion-text> {{item.program_breakdown.duration}}</ion-text>
+      </ion-label>
+    </div>
+    <ion-label>
+      <ion-icon class="align-middle" name="language-outline"></ion-icon>
+      <ion-text> {{item.program_breakdown.language}}</ion-text>
+    </ion-label>
+  </ion-card-content>
+
+  <ion-item>
+    <ion-label>
+      <h2 class="font-bold">€{{item.program_breakdown.tuition_fee}}/per semester</h2>
+    </ion-label>
+    <ion-label slot="end">
+      <ion-icon (click)="share()" class="text-xl" color="primary" name="share-social-outline"></ion-icon>
+      <ion-icon (click)="wishList(item.id)" color="primary" class="ion-margin-start text-xl" [name]="item.favorite ? 'heart' : 'heart-outline'"></ion-icon>
+    </ion-label>
+  </ion-item>
+</ion-card>

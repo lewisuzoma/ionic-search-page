@@ -1,4 +1,18 @@
 /*
+ * App Custome CSS
+ * ----------------------------------------------------------------------------
+ * Put style rules here that you want to apply globally. These styles are for
+ * the entire app and not just one component. Additionally, this file can be
+ * used as an entry point to import other CSS/Sass files to be included in the
+ * output CSS.
+ */
+
+ @use "./theme/style";
+ @use "./theme/font";
+ @use "./theme/viewport";
+ @use "./theme/components";
+
+/*
  * App Global CSS
  * ----------------------------------------------------------------------------
  * Put style rules here that you want to apply globally. These styles are for
@@ -35,3 +49,26 @@
 /* @import "@ionic/angular/css/palettes/dark.always.css"; */
 /* @import "@ionic/angular/css/palettes/dark.class.css"; */
 @import '@ionic/angular/css/palettes/dark.system.css';
+
+* ::-webkit-scrollbar {
+    width: 0;
+    height: 0;
+    display: none !important;
+  }
+
+  html {
+    --ion-dynamic-font: var(--ion-default-dynamic-font);
+    --ion-font-family: 'Inter', sans-serif;
+    font-size: 16px;
+    font-weight: 400;
+    -webkit-user-select: none !important;
+    user-select: none !important;
+    -webkit-tap-highlight-color: transparent !important;
+    -webkit-touch-callout: none !important;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+  }
+  .md {
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+  }

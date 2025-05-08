@@ -1,0 +1,25 @@
+
+ion-radio {
+    --border-radius: 50%;
+    --inner-border-radius: 50%;
+    --color-checked: var(--ion-color-primary);
+}
+ion-radio.ios::part(container) {
+    width: 20px;
+    height: 20px;
+  
+    border: 2px solid #ddd;
+    border-radius: 50%;
+  }
+.radio-checked.ios::part(container) {
+    border-color:  var(--ion-color-primary);
+  }
+
+ion-checkbox {
+    --border-radius: 50%;
+    --border-color-checked: var(--ion-color-primary);
+    --checkbox-background-checked: var(--ion-color-white);
+    --checkmark-color: var(--ion-color-primary);
+    --checkmark-width: 2px;
+    --size: 20px;
+}

@@ -1,0 +1,58 @@
+<ion-toolbar mode="md" class="ion-no-padding ion-padding-horizontal">
+  <ion-icon (click)="closeInstitute()" class="cursor-pointer text-xl" slot="start"  name="chevron-back-outline"></ion-icon>
+  <ion-item class="ion-margin-start ion-margin ion-no-padding" lines="none" detail="false">
+    <ion-label class="ion-no-padding ion-no-margin">
+      <h2 class="font-semibold">Institutes</h2>
+    </ion-label>
+  </ion-item>
+</ion-toolbar>
+
+<ion-content [fullscreen]="true" class="ion-padding">
+  <ion-item lines="none" detail="false">
+    <ion-input fill="outline" [(ngModel)]="searchText" placeholder="Search institutes" class="ion-item-border-radius"></ion-input>
+  </ion-item>
+
+  @if (institues.length === 0) {
+    <app-no-content [useIcon]="true">
+      <ion-label>
+        <h2>No record found</h2>
+        <p>Nothing to display</p>
+      </ion-label>
+    </app-no-content>
+  } @else {
+    <ion-list class="ion-margin-top mt-5">
+      <ion-radio-group mode="ios" [(ngModel)]="selectedInstitute">
+        @for (item of institues | search : searchText; track $index) {
+          <ion-item lines="none" detail="false">
+            <ion-thumbnail slot="start">
+              <img [alt]="`${item.name}`" src="assets/icon/un.svg" />
+            </ion-thumbnail>
+            <ion-radio justify="space-between" [value]="`${item.name}`">
+              <ion-label>
+                <h2>{{item.name}} &nbsp;&nbsp;<ion-badge class="align-middle" color="primary-overlay">{{item.school_count}}</ion-badge></h2>
+                <p><ion-icon class="align-middle" src="assets/icon/Canada.svg"></ion-icon> {{item.country}}</p>
+              </ion-label>
+            </ion-radio>
+          </ion-item>
+        }
+      </ion-radio-group>
+    </ion-list>
+  }
+</ion-content>
+
+<ion-footer mode="md" class="no-shadow">
+  <ion-toolbar class="no-shadow ion-border-top ion-item-border-radius-50px">
+    <ion-row>
+      <ion-col size="6">
+        <ion-button (click)="clearInstitute()" class="ion-margin-top ion-item-border-radius-20px" expand="block" mode="ios" color="primary-overlay">
+          <span>Clear all</span>
+        </ion-button>
+      </ion-col>
+      <ion-col size="6">
+        <ion-button (click)="closeInstitute()" class="ion-margin-top ion-item-border-radius-20px" expand="block" mode="ios" color="primary">
+          <span>Apply Filter</span>
+        </ion-button>
+      </ion-col>
+    </ion-row>
+  </ion-toolbar>
+</ion-footer>

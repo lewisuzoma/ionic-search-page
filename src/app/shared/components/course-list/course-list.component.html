@@ -1,0 +1,38 @@
+<ion-toolbar mode="md" class="ion-no-padding ion-padding-horizontal">
+  <ion-icon (click)="closeCourses()" class="cursor-pointer text-xl" slot="start"  name="chevron-back-outline"></ion-icon>
+  <ion-item class="ion-margin-start ion-margin ion-no-padding" lines="none" detail="false">
+    <ion-label class="ion-no-padding ion-no-margin">
+      <h2 class="font-semibold">Courses</h2>
+    </ion-label>
+  </ion-item>
+</ion-toolbar>
+
+<ion-content [fullscreen]="true" class="ion-padding">
+  <ion-item lines="none" detail="false">
+    <ion-input fill="outline" [(ngModel)]="searchText" placeholder="Search courses" class="ion-item-border-radius"></ion-input>
+  </ion-item>
+
+  @if (courses.length === 0) {
+    <app-no-content [useIcon]="true">
+      <ion-label>
+        <h2>No record found</h2>
+        <p>Nothing to display</p>
+      </ion-label>
+    </app-no-content>
+  } @else {
+    <ion-list class="ion-margin-top mt-5">
+      <ion-radio-group mode="ios" (ionChange)="selectCourse($event)">
+        @for (item of courses | search : searchText; track $index) {
+          <ion-item class="ion-border-top" lines="none" detail="false">
+            <ion-radio [value]="`${item.name}`" justify="space-between">
+              <ion-label>
+                <h2>{{item.name}} </h2>
+              </ion-label>
+            </ion-radio>
+          </ion-item>
+        }
+      </ion-radio-group>
+    </ion-list>
+  }
+
+</ion-content>

@@ -1,0 +1,90 @@
+<ion-toolbar mode="md" class="ion-no-padding ion-padding-horizontal">
+  <ion-icon (click)="closeFilter()" class="cursor-pointer text-xl" slot="start" name="arrow-back-outline"></ion-icon>
+  <ion-item class="ion-margin-start ion-margin ion-no-padding" lines="none" detail="false">
+    <ion-label class="ion-no-padding ion-no-margin">
+      <h2 class="font-semibold">Filter</h2>
+    </ion-label>
+  </ion-item>
+</ion-toolbar>
+
+<ion-content [fullscreen]="true" class="ion-padding">
+  <ion-list-header class="ion-no-padding" mode="ios" style="margin-top: -30px;">
+    <h2 class="text-lg font-semibold">Tuition fee</h2>
+  </ion-list-header>
+
+  <ion-row>
+    <ion-col size="6" class="ion-no-padding">
+      <ion-item class="ion-no-padding" lines="none" detail="false">
+        <ion-input readonly="true" label="Min" fill="outline" [(ngModel)]="min" placeholder="$50,000" class="ion-item-border-radius"></ion-input>
+      </ion-item>
+    </ion-col>
+    <ion-col size="6" class="ion-no-padding">
+      <ion-item class="ion-no-padding" lines="none" detail="false">
+        <ion-input readonly="true" label="Max" fill="outline" [(ngModel)]="max" placeholder="$120,000" class="ion-item-border-radius"></ion-input>
+      </ion-item>
+    </ion-col>
+    <ion-col size="12" class="ion-no-padding">
+      <ion-range mode="ios" (ionChange)="priceRange($event)" aria-label="Dual Knobs Range" [dualKnobs]="true" 
+      [min]="50000"
+      [max]="120000"
+      [value]="{ lower: minRange, upper: maxRange }" [pin]="true" [pinFormatter]="counterFormatterFn.bind(this)"></ion-range>
+    </ion-col>
+  </ion-row>
+
+  <ion-list class="ion-margin-top">
+    <ion-item (click)="openInstitute()" lines="none" detail="true" class="ion-margin-top ion-border-top ion-no-padding">
+      <ion-label>
+        <h2>Institutes</h2>
+        <p>{{(selectedFilterInstitute$ | async )?? 'None selected'}}</p>
+      </ion-label>
+    </ion-item>
+    <ion-item [disabled]="true" lines="none" detail="true" class="ion-border-top ion-no-padding">
+      <ion-label>
+        <h2>Education Level</h2>
+        <p>None selected</p>
+      </ion-label>
+    </ion-item>
+    <ion-item [disabled]="true" lines="none" detail="true" class="ion-border-top ion-no-padding">
+      <ion-label>
+        <h2>Country</h2>
+        <p>None selected</p>
+      </ion-label>
+    </ion-item>
+    <ion-item [disabled]="true" lines="none" detail="true" class="ion-border-top ion-no-padding">
+      <ion-label>
+        <h2>Discipline</h2>
+        <p>None selected</p>
+      </ion-label>
+    </ion-item>
+    <ion-item [disabled]="true" lines="none" detail="true" class="ion-border-top ion-no-padding">
+      <ion-label>
+        <h2>Study Language</h2>
+        <p>None selected</p>
+      </ion-label>
+    </ion-item>
+    <ion-item [disabled]="true" lines="none" detail="true" class="ion-border-top ion-no-padding">
+      <ion-label>
+        <h2>Attendance</h2>
+        <p>None selected</p>
+      </ion-label>
+    </ion-item>
+  </ion-list>
+</ion-content>
+
+<ion-footer mode="md" class="no-shadow">
+  <ion-toolbar class="no-shadow ion-border-top ion-item-border-radius-50px">
+    <ion-row>
+      <ion-col size="6">
+        <ion-button (click)="clearAllFilter()" class="ion-margin-top ion-item-border-radius-20px" expand="block" mode="ios" color="primary-overlay">
+          <span>Clear all</span>
+        </ion-button>
+      </ion-col>
+      <ion-col size="6">
+        <ion-button (click)="closeFilter()" class="ion-margin-top ion-item-border-radius-20px" expand="block" mode="ios" color="primary">
+          <span>View {{(program$ | async)?.length}} Results</span>
+          <ion-icon class="align-middle" name="arrow-forward-outline"></ion-icon>
+        </ion-button>
+      </ion-col>
+    </ion-row>
+  </ion-toolbar>
+</ion-footer>

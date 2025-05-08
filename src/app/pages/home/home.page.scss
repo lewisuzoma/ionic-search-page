@@ -1,0 +1,16 @@
+
+swiper-slide ion-chip {
+  width: auto;
+  display: block;
+  overflow: hidden;
+  white-space: nowrap;
+  text-overflow: ellipsis;
+  max-width: 100%;
+}
+
+swiper-slide {
+  width: auto !important;
+}
+
+
+

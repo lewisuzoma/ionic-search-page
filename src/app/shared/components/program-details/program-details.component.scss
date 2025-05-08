@@ -1,0 +1,33 @@
+.overlay-button-left {
+    position: absolute;
+    top: 8px; /* Adjust vertical position */
+    left: 8px; /* Adjust horizontal position */
+    z-index: 10; /* Ensure it's above the image */
+    --padding-start: 12px; /* Adjust padding inside the button */
+    --padding-end: 12px;
+    --padding-top: 3px; /* Adjust padding inside the button */
+    --padding-bottom: 3px;
+  }
+  
+  .overlay-button-left ion-icon {
+    font-size: 24px; /* Adjust icon size */
+  }
+
+  .overlay-button {
+    position: absolute;
+    z-index: 10; /* Ensure it's above the image */
+    --padding-start: 12px; /* Adjust padding inside the button */
+    --padding-end: 12px;
+    --padding-top: 3px; /* Adjust padding inside the button */
+    --padding-bottom: 3px;
+  }
+
+  .overlay-button ion-icon {
+    font-size: 24px; /* Adjust icon size */
+  }
+
+  /* Position the button at the bottom right */
+  .overlay-button.bottom-right {
+    bottom: 8px; /* Adjust vertical position from the bottom */
+    right: 8px; /* Adjust horizontal position from the right */
+  }

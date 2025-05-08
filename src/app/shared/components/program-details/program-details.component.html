@@ -1,0 +1,219 @@
+<ion-card class="no-shadow ion-no-margin ion-no-padding">
+  <div class="position-relative ">
+    <ion-button routerLink="/search" class="overlay-button-left no-shadow ion-item-border-radius-full" mode="ios" color="light">
+      <ion-icon name="chevron-back-outline"></ion-icon>
+    </ion-button>
+    <img [alt]="`${data.programme_name}`" [src]="`${data.image_src}`" loading="lazy"/>
+    <div class="overlay-button bottom-right">
+      <ion-button (click)="wishList(data.id)" class="no-shadow ion-item-border-radius-full" mode="ios" color="light">
+        <ion-icon [name]="data.favorite ? 'heart' : 'heart-outline'"></ion-icon>
+      </ion-button>
+      <ion-button (click)="share()" class="ion-margin-start no-shadow ion-item-border-radius-full" mode="ios" color="light">
+        <ion-icon name="share-social-outline"></ion-icon>
+      </ion-button>
+    </div>
+  </div>
+  <ion-card-header class="ion-no-padding mt-3">
+    <ion-card-title class="text-xl">{{data.programme_name}}</ion-card-title>
+  </ion-card-header>
+
+  <ion-card-content class="ion-no-padding">
+    <div class="flex items-center gap-3 mb-2 mt-2 text-sm">
+      <ion-label>
+        <ion-icon class="align-middle" src="assets/icon/CircleWavyCheck.svg"></ion-icon>
+        <ion-text> {{data.institute}}</ion-text>
+      </ion-label>
+      <ion-label>
+        <ion-icon class="align-middle" src="assets/icon/Canada.svg"></ion-icon>
+        <ion-text> {{data.country}}</ion-text>
+      </ion-label>
+    </div>
+    <ion-label>
+      <p class="text-base leading-5"> {{data.description}}.</p>
+    </ion-label>
+  </ion-card-content>
+</ion-card>
+
+<ion-item detail="false" lines="none" class="ion-border-bottom ion-border-top ion-no-padding mt-3">
+  <ion-label>
+    <ion-icon color="medium" class="text-xl align-middle" name="share-social-outline"></ion-icon>
+    <ion-text class="font-normal text-sm"> {{data.view_count}} Views</ion-text>
+  </ion-label>
+  <ion-label slot="end">
+    <ion-icon color="medium" class="text-xl align-middle" name="heart-outline"></ion-icon>
+    <ion-text class="font-normal text-sm"> {{data.impression_count}} Impression</ion-text>
+  </ion-label>
+</ion-item>
+
+<ion-list-header class="ion-no-padding" mode="ios">
+  <h2 class="text-lg font-semibold">Program Breakdown</h2>
+</ion-list-header>
+<ion-row >
+  <ion-col size="6" class="ion-no-margin ion-no-padding">
+    <ion-item detail="false" lines="none" class="ion-no-padding">
+      <ion-icon slot="start" class="text-xl align-middle" src="assets/icon/clip.svg"></ion-icon>
+      <ion-label>
+        <h2 class="font-normal text-sm"> {{data.program_breakdown.duration}} Years</h2>
+        <p>Duration</p>
+      </ion-label>
+    </ion-item>
+  </ion-col>
+  <ion-col size="6" class="ion-no-margin ion-no-padding">
+    <ion-item detail="false" lines="none" class="ion-no-padding">
+      <ion-icon slot="start" class="text-xl align-middle" src="assets/icon/clip.svg"></ion-icon>
+      <ion-label>
+        <h2 class="font-normal text-sm"> {{data.program_breakdown.level}}</h2>
+        <p>Level</p>
+      </ion-label>
+    </ion-item>
+  </ion-col>
+  <ion-col size="6" class="ion-no-margin ion-no-padding">
+    <ion-item detail="false" lines="none" class="ion-no-padding">
+      <ion-icon slot="start" class="text-xl align-middle" src="assets/icon/clip.svg"></ion-icon>
+      <ion-label>
+        <h2 class="font-normal text-sm"> ${{data.program_breakdown.tuition_fee}} per semester</h2>
+        <p>Tuition Fee</p>
+      </ion-label>
+    </ion-item>
+  </ion-col>
+  <ion-col size="6" class="ion-no-margin ion-no-padding">
+    <ion-item detail="false" lines="none" class="ion-no-padding">
+      <ion-icon slot="start" class="text-xl align-middle" src="assets/icon/clip.svg"></ion-icon>
+      <ion-label>
+        <h2 class="font-normal text-sm"> {{data.program_breakdown.attendance}}</h2>
+        <p>Attendance</p>
+      </ion-label>
+    </ion-item>
+  </ion-col>
+  <ion-col size="6" class="ion-no-margin ion-no-padding">
+    <ion-item detail="false" lines="none" class="ion-no-padding">
+      <ion-icon slot="start" class="text-xl align-middle" src="assets/icon/clip.svg"></ion-icon>
+      <ion-label>
+        <h2 class="font-normal text-sm"> {{data.program_breakdown.study_mode}}</h2>
+        <p>Attendance</p>
+      </ion-label>
+    </ion-item>
+  </ion-col>
+</ion-row>
+
+<ion-list-header class="ion-no-padding" mode="ios">
+  <h2 class="text-lg font-semibold">Description</h2>
+</ion-list-header>
+<ion-label>
+  <p class="text-base leading-5"> {{data.description}}  </p>
+</ion-label>
+<ion-button (click)="openReadmore('Description', data.description)" class="ion-margin-top ion-item-border-radius-20px" expand="block" mode="ios" color="primary-overlay">
+  <span>Read more</span>
+  <ion-icon class="align-middle" name="chevron-down-outline"></ion-icon>
+</ion-button>
+
+<ion-list-header class="ion-no-padding" mode="ios">
+  <h2 class="text-lg font-semibold">Requirement</h2>
+</ion-list-header>
+<ion-list>
+  @for (item of data.requirements; track $index) {
+    <ion-item detail="false" lines="none" class="ion-border-top ion-no-padding">
+      <ion-label>
+        <ion-icon color="medium" class="text-xl align-middle" name="checkmark-done-outline"></ion-icon>
+        <p class="font-normal text-sm inline"> {{item}}</p>
+      </ion-label>
+    </ion-item>
+  }
+</ion-list>
+<ion-button (click)="openReadmore('Requirement', data.requirements)" class="ion-margin-top ion-item-border-radius-20px" expand="block" mode="ios" color="primary-overlay">
+  <span>Read more</span>
+  <ion-icon class="align-middle" name="chevron-down-outline"></ion-icon>
+</ion-button>
+
+<ion-list-header class="ion-no-padding" mode="ios">
+  <h2 class="text-lg font-semibold">Structure</h2>
+</ion-list-header>
+<ion-label>
+  <p class="text-base leading-5"> {{data.structure}}   </p>
+</ion-label>
+<ion-button (click)="openReadmore('Structure', data.structure)" class="ion-margin-top ion-item-border-radius-20px" expand="block" mode="ios" color="primary-overlay">
+  <span>Read more</span>
+  <ion-icon class="align-middle" name="chevron-down-outline"></ion-icon>
+</ion-button>
+
+<ion-list-header class="ion-no-padding" mode="ios">
+  <h2 class="text-lg font-semibold">Fees</h2>
+</ion-list-header>
+<ion-label>
+  <p class="text-base"> Service fee is €{{data.fees.service_fee}}.</p>
+  <p>For international degree students, the tuition fee is € {{data.fees.tuition_fee}}</p>
+</ion-label>
+<ion-row class="ion-margin-top">
+  <ion-col size="6" class="ion-no-margin ion-no-padding">
+    <ion-item detail="false" lines="none" class="ion-no-padding">
+      <ion-icon slot="start" class="text-xl align-middle" src="assets/icon/clip.svg"></ion-icon>
+      <ion-label>
+        <h2 class="font-normal text-sm"> ${{data.fees.housing_fee}}</h2>
+        <p>Housing Fee</p>
+      </ion-label>
+    </ion-item>
+  </ion-col>
+  <ion-col size="6" class="ion-no-margin ion-no-padding">
+    <ion-item detail="false" lines="none" class="ion-no-padding">
+      <ion-icon slot="start" class="text-xl align-middle" src="assets/icon/clip.svg"></ion-icon>
+      <ion-label>
+        <h2 class="font-normal text-sm"> ${{data.fees.acceptance_fee}}</h2>
+        <p>Acceptance Fee</p>
+      </ion-label>
+    </ion-item>
+  </ion-col>
+  <ion-col size="6" class="ion-no-margin ion-no-padding">
+    <ion-item detail="false" lines="none" class="ion-no-padding">
+      <ion-icon slot="start" class="text-xl align-middle" src="assets/icon/clip.svg"></ion-icon>
+      <ion-label>
+        <h2 class="font-normal text-sm"> ${{data.fees.tuition_fee}} per semester</h2>
+        <p>Tuition Fee</p>
+      </ion-label>
+    </ion-item>
+  </ion-col>
+  <ion-col size="6" class="ion-no-margin ion-no-padding">
+    <ion-item detail="false" lines="none" class="ion-no-padding">
+      <ion-icon slot="start" class="text-xl align-middle" src="assets/icon/clip.svg"></ion-icon>
+      <ion-label>
+        <h2 class="font-normal text-sm"> ${{data.fees.application_fee}}</h2>
+        <p>Application Fee</p>
+      </ion-label>
+    </ion-item>
+  </ion-col>
+  <ion-col size="6" class="ion-no-margin ion-no-padding">
+    <ion-item detail="false" lines="none" class="ion-no-padding">
+      <ion-icon slot="start" class="text-xl align-middle" src="assets/icon/clip.svg"></ion-icon>
+      <ion-label>
+        <h2 class="font-normal text-sm"> ${{data.fees.living_fee}}</h2>
+        <p>Living Fee</p>
+      </ion-label>
+    </ion-item>
+  </ion-col>
+</ion-row>
+
+<ion-list-header class="ion-no-padding" mode="ios">
+  <h2 class="text-lg font-semibold">Extra Information</h2>
+</ion-list-header>
+<ion-list>
+  <ion-item detail="false" lines="none" class="ion-border-top ion-no-padding">
+    <ion-icon slot="start" color="medium" class="text-xl align-middle" name="alert-circle-outline"></ion-icon>
+    <ion-label>
+      <h2 class="text-sm">Main, Portierloge Wall, Portierloge ReSoWi, Portierloge Hauptgebäude</h2>
+      <p class="font-normal text-sm"> Campuse(s)</p>
+    </ion-label>
+  </ion-item>
+  <ion-item detail="false" lines="none" class="ion-border-top ion-no-padding">
+    <ion-icon slot="start" color="medium" class="text-xl align-middle" name="alert-circle-outline"></ion-icon>
+    <ion-label>
+      <h2 class="text-sm">Winter 2024</h2>
+      <p class="font-normal text-sm inline">Intakes</p>
+    </ion-label>
+  </ion-item>
+  <ion-item detail="false" lines="none" class="ion-border-top ion-no-padding">
+    <ion-icon slot="start" color="medium" class="text-xl align-middle" name="alert-circle-outline"></ion-icon>
+    <ion-label>
+      <h2 class="text-sm">English Language</h2>
+      <p class="font-normal text-sm inline"> Study Language</p>
+    </ion-label>
+  </ion-item>
+</ion-list>
